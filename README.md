@@ -27,8 +27,9 @@
 	
 	1. let
 		1. 特点：
-			1. 只能在代码块内使用,具备块级作用域
-			2. 不允许重复声明
+			1. 只能在代码块内使用
+			2. 具备块级作用域(此时相当于匿名函数立即调用)
+			3. 不允许重复声明
 		2. 代码块：{}包起来的代码
 			比如：if、for、while
 		3. 用处
@@ -36,7 +37,7 @@
 				`(function(){//code})()`=>`{//code}`
 			2. i值问题
 				`for (var i = 0; i < aBtn.length; i++){(function(i){//code})(i)}`=>`for (let i = 0; i < xx.length; i++){//code}`
-		4. 例子:day01/base.html
+		4. 例子:day01/base-let.html
 	2. const
 	3. 原来的var
 		1. 只有函数作用域
