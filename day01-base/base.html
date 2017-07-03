@@ -7,8 +7,58 @@
 </head>
 <body>
 <script>
-    let a =2;
-    alert(a);
+    //  eg.1=>作用域
+    //    {
+    //        let a= 2;
+    //        alert(a);
+    //    }
+    //    {
+    //        let a =2;
+    //    }
+    //    alert(a);
+
+    //    eg.2=>不可重复声明
+    //    let a =12;
+    //    let a =5;
+    //    alert(a);
+    //    =>Identifier 'a' has already been declared
+
+    //    eg.3=>封闭空间
+    //    (function () {
+    //        var a = 123;
+    //        alert(a);
+    //    })();
+    //    alert(a);
+    //    =>a is not defined
+
+    //    {
+    //        let a =123;
+    //        alert(123);
+    //    }
+
+    //    eg.4=>i值问题
+    window.onload = function () {
+        var aBtn = document.getElementsByTagName('input');
+//        for (var i = 0; i < aBtn.length; i++) {
+//            (function (i) {
+//                aBtn[i].onclick = function () {
+//                    alert(i);
+//                }
+//            })(i);
+////            aBtn[i].onclick = function () {
+////                alert(i);
+////            }
+//        }
+        for (let i = 0; i < aBtn.length; i++) {
+            aBtn[i].onclick = function () {
+                alert(i);
+            }
+        }
+    }
+    ;
 </script>
+<input type="button" value="001">
+<input type="button" value="002">
+<input type="button" value="003">
 </body>
 </html>
