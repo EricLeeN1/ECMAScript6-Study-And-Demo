@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>变量声明</title>
+    <title>base-let</title>
 </head>
 <body>
 <script>
@@ -30,15 +30,14 @@
     //    })();
     //    alert(a);
     //    =>a is not defined
-
     //    {
     //        let a =123;
     //        alert(123);
     //    }
 
     //    eg.4=>i值问题
-    window.onload = function () {
-        var aBtn = document.getElementsByTagName('input');
+//    window.onload = function () {
+//        var aBtn = document.getElementsByTagName('input');
 //        for (var i = 0; i < aBtn.length; i++) {
 //            (function (i) {
 //                aBtn[i].onclick = function () {
@@ -49,13 +48,17 @@
 ////                alert(i);
 ////            }
 //        }
-        for (let i = 0; i < aBtn.length; i++) {
-            aBtn[i].onclick = function () {
-                alert(i);
-            }
-        }
-    }
-    ;
+//        for (let i = 0; i < aBtn.length; i++) {
+//            aBtn[i].onclick = function () {
+//                alert(i);
+//            }
+//        }
+//    }
+
+//    eg.5
+//    let a= '111';
+//    a=12;
+//    alert(a);=>12
 </script>
 <input type="button" value="001">
 <input type="button" value="002">
