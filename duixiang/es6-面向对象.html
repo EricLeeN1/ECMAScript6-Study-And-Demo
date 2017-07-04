@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    class Person {//类
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        showName() {
+            return this.name
+        }
+
+        showAge() {
+            return this.age
+        }
+    }
+    var p1 = new Person('aaa', 10);
+    var p2 = new Person('bbb', 10);
+
+    //es6继承
+    class Worker extends Person {
+//        constructor() {
+////            this.job = job;
+//        }
+        showJob() {
+            return '您的工作是'
+        }
+    }
+    var w1 = new Worker('bbb', 10);
+    console.log(w1.showJob());
+
+
+    //    console.log(p1.name);//=>aaa
+    //    console.log(p2.showName==p1.showName);//=>true
+</script>
+</body>
+</html>

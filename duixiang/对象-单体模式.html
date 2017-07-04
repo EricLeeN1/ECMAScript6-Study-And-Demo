@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+//    var person={
+//        name:'abx',
+//        age:16,
+//        showName:function () {
+//            alert(this.name)
+//        },
+//        showAge:function () {
+//            alert(this.age)
+//        }
+//    };
+
+//var person={
+//    name:'abx',
+//    age:16,
+//    showName:()=>{
+//        alert(this.name)
+//    },
+//    showAge:()=> {
+//        alert(this.age)
+//    }
+//};
+//报错
+var name ='addd';
+var age =101;
+var person={
+    name,
+    age,
+    showAge:()=>{
+        console.log(this.name)
+    }
+};
+    person.showAge()
+</script>
+</body>
+</html>

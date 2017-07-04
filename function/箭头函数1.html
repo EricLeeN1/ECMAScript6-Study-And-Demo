@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    window.onload=()=>{
+        var oBox=document.getElementById('box');
+        oBox.onclick=()=>{
+//            alert(this);=>window
+            oBox.style.background='red';
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    //    又是类又是构造函数
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    ;
+    Person.prototype.showAge = function () {
+        return this.age
+    };
+    Person.prototype.showName = function () {
+        return this.name
+    };
+
+    //    继承
+    function Worker(name,age) {
+        Person.apply(this,arguments);
+    };
+    Worker.prototype =new Person();
+    var p1= new Person('abc',10);
+    var w1= new Worker('abc',10);
+    alert(w1.showName());
+
+    //    es6
+    //    类class
+    //    构造函数 constructor
+</script>
+</body>
+</html>
