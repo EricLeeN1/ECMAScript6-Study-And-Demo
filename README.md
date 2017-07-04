@@ -61,3 +61,22 @@
 	4. 用处
 		1. 运动框架里面
 		2. 返回值
+### (4).复制数组
+
+	1. 循环->老方法
+	2. `var arr2 =Array.from(arr);`
+	3. `var arr2=[...arr];`
+	4. 应用->函数参数
+	`function show(...args) {
+        args.push(5);
+        console.log(args);
+        //[1,2,3.4.5]
+    }
+    show(1, 2, 3, 4);`
+### (5).循环
+	
+	1. 普通for
+	2. forin
+	3. forEach
+	4. 新 for of  -->遍历（迭代、循环）整个对象， 表现类似for in
+	5. 等
