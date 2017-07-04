@@ -145,4 +145,10 @@
     	}`
 	2. 继承
 		1. 之前:子类.prototype=new 父类();
-		2. es6:`class Worker extends Person {}`
+		2. es6:
+			`class Worker extends Person {
+				constructor() {
+            		super(name,age);//调用父级构造
+        		}
+			}`
+	3. 应用->面向对象应用-队列类.html 
