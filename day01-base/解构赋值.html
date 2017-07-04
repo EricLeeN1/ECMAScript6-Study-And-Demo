@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>base-zifuchuan</title>
+</head>
+
+<body>
+    <script>
+        // //  eg1
+        // var [a, b, c] = [12, 3, 5];
+        // console.log(a, b, c);
+
+
+        // eg2
+        // var {
+        //     a,
+        //     b,
+        //     c
+        // } = {
+        //     a: 12,
+        //     c: 3,
+        //     b: 5
+        // };
+        // console.log(a, b, c);
+
+        //模式匹配eg3
+        // var [a, [b, c], d] = [12, [3, 4], 5];
+        // console.log(a, b, c, d);
+
+        // var [{
+        //         a,
+        //         e
+        //     },
+        //     [b, c], d
+        // ] = [{
+        //         a: 'aaa',
+        //         e: 'eee'
+        //     },
+        //     [12, 3], 6
+        // ];
+        // console.log(a, b, c, d, e);
+
+        // eg5
+        // var {time = 12,id=0} = {};
+        // console.log(time);
+        function move(obj, json, options) {
+            options = options || {};
+            options.time = options.time || 30;
+        }
+
+        function move(obj, json, {
+            time = 300
+        } = {}) {
+
+        }
+
+        function show() {
+            return {
+                left: 100,
+                stop: 100
+            }
+        }
+        var {
+            left,
+            stop
+        } = show();
+        console.log(left, stop);
+    </script>
+</body>
+
+</html>
