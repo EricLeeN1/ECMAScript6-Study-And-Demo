@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    var arr = ['红楼梦', '西游记', '水浒传', '三国演义']
+    for (var name of arr.entries()) {
+        console.log(name);
+    };
+    for (var name of arr.keys()) {
+        console.log(name);
+    }
+    for (var name of arr.values()) {
+        console.log(name);
+    }
+</script>
+</body>
+</html>

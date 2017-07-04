@@ -7,6 +7,30 @@
 </head>
 <body>
 <script>
+    var map = new Map();
+    map.set('a', 'apple');
+    map.set('b', 'banana');
+    map.set('b', 'canada');
+    map.set('d', 'dear');
+
+//    全部
+//    for (var i of map.entries()) {
+//        console.log(i);
+//    };
+//    for (var [a,b] of map.entries()) {
+//        console.log([a,b]);
+//    };
+
+//    key
+//    for (var i of map.keys()) {
+//        console.log(i);
+//    };
+
+//    value
+    for (var i of map.values()) {
+        console.log(i);
+    };
 </script>
+
 </body>
 </html>

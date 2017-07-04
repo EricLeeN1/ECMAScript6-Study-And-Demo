@@ -61,6 +61,7 @@
 	4. 用处
 		1. 运动框架里面
 		2. 返回值
+	
 ### (4).复制数组
 
 	1. 循环->老方法
@@ -73,15 +74,21 @@
         //[1,2,3.4.5]
     }
     show(1, 2, 3, 4);`
+
 ### (5).循环
 	
 	1. 普通for
 	2. forin
 	3. forEach
 	4. 新 for of  -->循环，可以循环数组，不能循环json
+	5. 循环数组时，参考下面Map对象
+		1. 可以用arr.entries()=>输出index,value
+		2. 可以用arr.keys()=>输出index
+		3. 由于其默认就是values因此不支持arr.values()
 		真正目的为了循环 Map对象
 		遍历（迭代、循环）整个对象， 表现类似for in 
-	5. 等
+	6. 别的遍历等
+
 ### (6).Map对象--2017/7/4 22:07:08 
 	
 	1. 和json相似，也是一种key:value形式
@@ -94,3 +101,18 @@
 		1. `map.get('name');`
 	6. 删除
 		1. `map.delete('name');`
+	7. 遍历
+		1. 不能使用for in，没有效果
+		2. `for (var i of map) {`=>相当于循环key&value`.entries()`
+        		console.log(i);
+    		}`=>[key,value]
+		3. `for (var i of map.keys()) {`=>循环key
+        		console.log(i);
+    		};`
+		4. `for (var i of map.values()) {`=>循环value
+      			console.log(i);
+    		};`
+
+### (7).箭头函数
+	
+	1. 
