@@ -113,6 +113,36 @@
       			console.log(i);
     		};`
 
-### (7).箭头函数
+### (7).箭头函数`=>`
 	
-	1. 
+	1. 关于this问题=>指向了window
+	2. arguments问题=>不能使用了
+	3. 函数给默认值->之前也能用
+
+### (8).对象简洁化
+	
+	`var name ='addd';
+	 var age =101;
+     var person={
+     name,
+     age,
+     showAge:()=>{
+        console.log(this.name)
+     }
+    };`
+	1. 面向对象
+		`class Person {//类
+        	constructor(name, age) {
+           		this.name = name;
+            	this.age = age;
+        	}
+        	showName(){
+            	return this.name
+        	}
+        	showAge(){
+            	return this.age
+        	}
+    	}`
+	2. 继承
+		1. 之前:子类.prototype=new 父类();
+		2. es6:`class Worker extends Person {}`
