@@ -78,5 +78,19 @@
 	1. 普通for
 	2. forin
 	3. forEach
-	4. 新 for of  -->遍历（迭代、循环）整个对象， 表现类似for in
+	4. 新 for of  -->循环，可以循环数组，不能循环json
+		真正目的为了循环 Map对象
+		遍历（迭代、循环）整个对象， 表现类似for in 
 	5. 等
+### (6).Map对象--2017/7/4 22:07:08 
+	
+	1. 和json相似，也是一种key:value形式
+	2. Map对象为了和for of循环配合而生的
+	3. 创建
+		1. `var map = new Map();`
+	4. 设置
+		1. `map.set(name,value);`
+	5. 获取
+		1. `map.get('name');`
+	6. 删除
+		1. `map.delete('name');`
