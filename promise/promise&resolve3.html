@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    var p1 = Promise.resolve(3);
+    var p2 = Promise.resolve(p1);
+    p2.then(function (value) {
+        console.log(value);
+    });
+</script>
+</body>
+</html>

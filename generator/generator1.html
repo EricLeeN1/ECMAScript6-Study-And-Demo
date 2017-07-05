@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    function* show() {
+        yield 'Hello';
+        yield 'Eric';
+        yield 'Keep Moving';
+//        return 'go';
+    };
+    var res=show();
+    console.log(res.next());//{value: "Hello", done: false}
+     //false:表示没循环完
+    console.log(res.next());//{value: "Eric", done: false}
+    console.log(res.next());//{value: "Keep Moving", done: false}
+    console.log(res.next());//{value: undefined, done: true}
+    //碰见true表示结束了
+//    console.log(res.next());//{value: "true", done: true}
+</script>
+</body>
+</html>

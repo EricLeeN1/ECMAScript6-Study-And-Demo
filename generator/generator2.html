@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    function* show() {
+        var a = yield 'Hello';
+        return a;
+    }
+    ;
+    var res = show();
+    console.log(res.next());//
+    console.log(res.next());//
+</script>
+</body>
+</html>

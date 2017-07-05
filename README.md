@@ -169,7 +169,7 @@
 	2. 引入时候`type=module`
 		1. `import modA from './a.js';`
 
-### (10).Promise
+### (10).Promise->承诺?
 	
 	1. 实质：一个对象，用来传递异步操作的数据(消息)
 	2. 状态
@@ -187,4 +187,28 @@
 		6. Promise.resolve()->生成一个成功的promise
 			1. 语法 `Promise.resolve(value);
 					Promise.resolve(promise);
-					Promise.resolve();
+					Promise.resolve([arr1,arr2]);
+
+### (11).Generator->生成器
+		
+	1. 实质：一个函数,可以遍历,就是一个状态机,配合yield语句
+	2. 语法
+		- `function show(){}`->普通函数
+		- `function* show(){}`->generator函数
+	3. 形式
+		- 函数名字前有*
+		- 函数内部使用yield语句
+	4.使用
+		`function* show() {
+        	yield 'Hello';
+        	yield 'Eric';
+        	yield 'Keep Moving';
+		};`
+	5.方法
+		1. next()=>`{value: "Hello", done: false}`
+			1. value->yeild后面值
+			2. done->布尔值表示是否遍历结束
+	6. tips
+		1. yield语句本身没有返回值，或者每次返回undefined
+		2. next()可以带参数，给上一个yield值
+		3. for...of循环generator函数 
