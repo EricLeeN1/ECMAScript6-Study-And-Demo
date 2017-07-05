@@ -212,3 +212,11 @@
 		1. yield语句本身没有返回值，或者每次返回undefined
 		2. next()可以带参数，给上一个yield值
 		3. for...of循环generator函数 
+		4. generator函数放到对象里面=>
+		`var json = {
+            *show(){
+                yield 'a';
+                yield 'b';
+                return 'c';
+            }
+        };`

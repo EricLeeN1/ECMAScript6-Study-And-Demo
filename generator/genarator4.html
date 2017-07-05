@@ -7,15 +7,18 @@
 </head>
 <body>
 <script>
-    var json = {
-        *show(){
-            yield 'a';
-            yield 'b';
-            return 'c';
-        }
-    };
-    var res =json.show();
-    console.log(res);
+        var json = {
+            *show(){
+                yield 'a';
+                yield 'b';
+                return 'c';
+            }
+        };
+    var res = json.show();
+    console.log(res.next());
+    console.log(res.next());
+    console.log(res.next());
+    console.log(res.next());
 </script>
 </body>
 </html>
