@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+    <style>
+        .on {
+            background-color: #f60;
+            color: #fff;
+        }
+        
+        #box div,
+        #box1 div {
+            display: none;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        class Tab {
+            constructor(id) {
+                this.oBox = document.getElementById(id);
+                this.aBtn = this.oBox.getElementsByTagName('input');
+                this.aDiv = this.oBox.getElementsByTagName('div');
+                this.iNow = 0;
+                this.init();
+            }
+
+            init() {
+                for (let i = 0; i < this.aBtn.length; i++) {
+                    this.aBtn[i].onclick = function() {
+                        this.iNow = i;
+                        this.hide();
+                        this.show(i);
+                        document.title = this.iNow;
+                    }.bind(this);
+                    //                bind=>矫正this指向
+                }
+            }
+            hide() {
+                for (let i = 0; i < this.aBtn.length; i++) {
+                    this.aBtn[i].className = '';
+                    this.aDiv[i].style.display = 'none';
+                }
+            }
+            show(index) {
+                this.aBtn[index].className = 'on';
+                this.aDiv[index].style.display = 'block';
+            }
+        }
+        class AutoTab extends Tab {
+            constructor(id) {
+                super(id);
+                setInterval(this.next.bind(this), 1000);
+            }
+            next() {
+                this.iNow++;
+                if (this.iNow == this.aBtn.length) {
+                    this.iNow = 0;
+                }
+                this.hide();
+                this.show(this.iNow);
+            }
+        }
+        window.onload = function() {
+            new Tab('box');
+            var at = new AutoTab('box1');
+            document.onclick = function() {
+                at.next();
+            }
+        }
+    </script>
+    <div id="box">
+        <input class="on" type="button" value="aaa">
+        <input type="button" value="bbb">
+        <input type="button" value="ccc">
+        <div style="display: block;">111</div>
+        <div>222</div>
+        <div>333</div>
+    </div>
+    <div id="box1">
+        <input class="on" type="button" value="aaa">
+        <input type="button" value="bbb">
+        <input type="button" value="ccc">
+        <div style="display: block;">111</div>
+        <div>222</div>
+        <div>333</div>
+    </div>
+</body>
+
+</html>
