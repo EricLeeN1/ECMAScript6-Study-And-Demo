@@ -172,3 +172,19 @@
 ### (10).Promise
 	
 	1. 实质：一个对象，用来传递异步操作的数据(消息)
+	2. 状态
+		1. pending(等待、处理中)-->Resolve(完成)
+							   -->Rejected(拒绝、失败)
+	3. 创建
+		`var p1 = new Promise(function(resolve,reject){});`
+	4. 方法
+		1. then(fnsuss,fnfail);	
+		2. catch->捕获错误
+		3. all->将多个promise对象组合。包装城一个新的promise
+			1. `Promise.all([p1,p2,p2...]);`=>所有的promise对象都正确，才走成功,否则只要有一个错误，就错误
+		4. race->返回一个promise对象(最先能执行的promise结果,那个最快就用哪个)=> `Promise.race([p1,p2]).then(function (value) {console.log(value);});
+		5. Promise.reject()->生成错误promise
+		6. Promise.resolve()->生成一个成功的promise
+			1. 语法 `Promise.resolve(value);
+					Promise.resolve(promise);
+					Promise.resolve();

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<input type="button" value="aaa" id="btn">
+<script>
+    function ajax(url,fnsuss,fnfail) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET',url,true);
+        xhr.send();
+        xhr.onload=function () {
+            if (xhr.readyState==4&&xhr.status==200) {
+                fnsuss(xhr.responseText);
+            }else {
+                fnfail(xhr.status);
+            }
+        }
+    }
+    window.onload=function () {
+        let oBtn =document.querySelector('#btn');
+        let oBox = document.querySelector('#box1');
+        oBtn.onclick=function () {
+            let p1= new Promise(function (resolve,reject) {
+                ajax('a.txt',function (str) {
+                    console.log(str);
+                    resolve(str);
+                },function (str) {
+                    reject(str);
+                })
+            });
+            p1.then(function (str) {
+                oBox.innerHTML = str;
+            },function (str) {
+                oBox.innerHTML = str;
+            });
+        }
+    }
+</script>
+<div id="box1"></div>
+</body>
+</html>

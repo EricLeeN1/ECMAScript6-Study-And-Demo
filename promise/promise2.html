@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    var p1 = new Promise(function (reslove,reject) {
+        reslove(1);
+    });
+    p1.then(function (value) {
+        console.log(value);
+        return value+1;
+    },function () {
+        
+    }).then(function (value) {
+        console.log(value);
+    })
+</script>
+</body>
+</html>

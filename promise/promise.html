@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    var p1 =new Promise(function (resolve,reject) {
+////        resolve成功了
+////        rejected失败了
+//        if (异步处理成功) {
+//            resolve(成功数据);
+//        }else {
+//            reject(失败原因);
+//        }
+//        resolve(1);
+        reject(0);
+    });
+//    p1.then(resolve,reject);
+    p1.then(function (value) {
+        console.log('成功了'+value);
+    },function (value) {
+        console.log('失败了'+value);
+    });
+</script>
+</body>
+</html>

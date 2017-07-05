@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>es6</title>
+</head>
+<body>
+<script>
+    var  p1 = new Promise(function (resolve,reject) {
+        resolve('成功了');
+    });
+    p1.then(function (val) {
+        console.log(val);
+        throw '发生错了';
+    }).catch(function (e) {
+        console.log(e)
+    })
+</script>
+</body>
+</html>
