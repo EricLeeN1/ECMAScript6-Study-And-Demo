@@ -153,9 +153,22 @@
 			}`
 	3. 应用->面向对象应用-队列类.html 
 
-### (9).模块化->浏览器并未实现需要编辑器
+### (9).模块化->浏览器并未实现需要转
+	
+	-traceur和bootstrap
 	
 	1. 定义导出模块
 		`const a = 12;
 		export default a;`
-	2. 
+		`const  a=5;
+		const  b =12;
+		function kuoda(n) {
+    	return n*2;
+		}
+		export default {a,b,kuoda};`=>多个模块 
+	2. 引入时候`type=module`
+		1. `import modA from './a.js';`
+
+### (10).Promise
+	
+	1. 实质：一个对象，用来传递异步操作的数据(消息)
