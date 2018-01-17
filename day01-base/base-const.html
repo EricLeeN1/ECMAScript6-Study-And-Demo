@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>base-const</title>
 </head>
+
 <body>
 
-<script>
-    //    eg.1
-//        let a= '111';
-//        a=12;
-//        alert(a);
-//        =>12
-//    const a= '111';
-//    a=12;
-//    alert(a);
-//    =>Assignment to constant variable.
+    <script>
+        //    eg.1
+        //        let a= '111';
+        //        a=12;
+        //        alert(a);
+        //        =>12
+        //    const a= '111';
+        //    a=12;
+        //    alert(a);
+        //    =>Assignment to constant variable.
 
-//eg.2
-</script>
+        //eg.2
+
+        class Clac {
+            constructor() {
+                console.log('Calc constructor');
+            }
+            add(a, b) {
+                return a + b;
+            }
+        }
+        let c = new Clac();
+        console.log(c.add(4, 5));
+        // Calc constructor
+        // 9
+    </script>
 </body>
+
 </html>

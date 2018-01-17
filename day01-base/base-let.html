@@ -1,67 +1,104 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>base-let</title>
 </head>
+
 <body>
-<script>
-    //  eg.1=>作用域
-    //    {
-    //        let a= 2;
-    //        alert(a);
-    //    }
-    //    {
-    //        let a =2;
-    //    }
-    //    alert(a);
+    <script>
+        //  eg.1=>作用域
+        //    {
+        //        let a= 2;
+        //        alert(a);
+        //    }
+        //    {
+        //        let a =2;
+        //    }
+        //    alert(a);
 
-    //    eg.2=>不可重复声明
-    //    let a =12;
-    //    let a =5;
-    //    alert(a);
-    //    =>Identifier 'a' has already been declared
+        //    eg.2=>不可重复声明
+        //    let a =12;
+        //    let a =5;
+        //    alert(a);
+        //    =>Identifier 'a' has already been declared
 
-    //    eg.3=>封闭空间
-    //    (function () {
-    //        var a = 123;
-    //        alert(a);
-    //    })();
-    //    alert(a);
-    //    =>a is not defined
-    //    {
-    //        let a =123;
-    //        alert(123);
-    //    }
+        //    eg.3=>封闭空间
+        //    (function () {
+        //        var a = 123;
+        //        alert(a);
+        //    })();
+        //    alert(a);
+        //    =>a is not defined
+        //    {
+        //        let a =123;
+        //        alert(123);
+        //    }
 
-    //    eg.4=>i值问题
-//    window.onload = function () {
-//        var aBtn = document.getElementsByTagName('input');
-//        for (var i = 0; i < aBtn.length; i++) {
-//            (function (i) {
-//                aBtn[i].onclick = function () {
-//                    alert(i);
-//                }
-//            })(i);
-////            aBtn[i].onclick = function () {
-////                alert(i);
-////            }
-//        }
-//        for (let i = 0; i < aBtn.length; i++) {
-//            aBtn[i].onclick = function () {
-//                alert(i);
-//            }
-//        }
-//    }
+        //    eg.4=>i值问题
+        //    window.onload = function () {
+        //        var aBtn = document.getElementsByTagName('input');
+        //        for (var i = 0; i < aBtn.length; i++) {
+        //            (function (i) {
+        //                aBtn[i].onclick = function () {
+        //                    alert(i);
+        //                }
+        //            })(i);
+        ////            aBtn[i].onclick = function () {
+        ////                alert(i);
+        ////            }
+        //        }
+        //        for (let i = 0; i < aBtn.length; i++) {
+        //            aBtn[i].onclick = function () {
+        //                alert(i);
+        //            }
+        //        }
+        //    }
 
-//    eg.5
-//    let a= '111';
-//    a=12;
-//    alert(a);=>12
-</script>
-<input type="button" value="001">
-<input type="button" value="002">
-<input type="button" value="003">
+        //    eg.5
+        //    let a= '111';
+        //    a=12;
+        //    alert(a);=>12
+
+        //    eg.6
+        //    暂时性死区
+
+        // var tmp = 123;
+        // if (true) {
+        //     // TDZ开始
+        //   tmp = 'abc'; // ReferenceError
+        //   console.log(tmp); // ReferenceError
+
+        //   let tmp; // TDZ结束
+        //   console.log(tmp); // undefined
+
+        //   tmp = 123;
+        //   console.log(tmp); // 123
+        // }
+        // console.log(tmp);// =>'abc'
+        // console.log('在let命令声明变量tmp之前，都属于变量tmp的“死区”。');
+
+        // typeof a;//Uncaught ReferenceError: a is not defined
+        // let a;
+
+        // eg.7 do表达式提案阶段
+        // 函数表达式
+        // {
+        //     let a = 'secret';
+        //     let f = function () {
+        //         return a;
+        //     };
+        // }
+        // let x = do {
+        //     let t = f();
+        //     t = t * t + 1;
+        // };
+    </script>
+    <input type="button" value="001">
+    <input type="button" value="002">
+    <input type="button" value="003">
 </body>
+
 </html>
