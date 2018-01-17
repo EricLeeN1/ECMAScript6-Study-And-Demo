@@ -22,18 +22,36 @@
 
         //eg.2
 
-        class Clac {
-            constructor() {
-                console.log('Calc constructor');
-            }
-            add(a, b) {
-                return a + b;
-            }
+        // class Clac {
+        //     constructor() {
+        //         console.log('Calc constructor');
+        //     }
+        //     add(a, b) {
+        //         return a + b;
+        //     }
+        // }
+        // let c = new Clac();
+        // console.log(c.add(4, 5));
+        // // Calc constructor
+        // // 9
+
+        // eg.3
+        // const foo = Object.freeze({});
+        // //常规模式时，下面一行不起作用
+        // //严格模式时，该行会报错
+        // foo.prop = 123;
+        console.log('常量foo指向一个冻结的对象，所以添加新属性不起作用，严格模式时还会报错。');
+
+        //eg.4讲对象彻底冻结的函数
+
+        var constantize = (obj) => {
+            Object.freeze(obj);
+            Object.keys(obj).forEach((key, i) => {
+                if (typeof obj[key] === 'object') {
+                    constantize(obj[key]);
+                }
+            })
         }
-        let c = new Clac();
-        console.log(c.add(4, 5));
-        // Calc constructor
-        // 9
     </script>
 </body>
 
