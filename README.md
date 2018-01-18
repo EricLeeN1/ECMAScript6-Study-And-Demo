@@ -62,7 +62,17 @@
     		2. 详细参考页面js文件
 	3. 原来的var--变量常量都行
 		1. 只有函数作用域
-		
+	4. Es6 生命变量的六种方法
+		1. var
+		2. function
+		3. let
+		4. const
+		5. import
+		6. class
+		tips:
+			1. 一方面规定，为了保持兼容性，var命令和function命令声明的全局变量，依旧是顶层对象的属性；因此var a=1时;window.a = a;a是顶层对象的属性
+			2. 另一方面规定，let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性。因此let a=1时;window.a != a; 此时window.a undefined;
+			a不是顶层对象的属性。
 ### (2).字符串链接
 
 	1. 之前'aaa'+变量名+'bbb'
