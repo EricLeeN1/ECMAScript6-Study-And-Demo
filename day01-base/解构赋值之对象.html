@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解构赋值之对象</title>
+</head>
+
+<body>
+    <script>
+        // eg.1
+        // let {
+        //     bar,
+        //     foo
+        // } = {
+        //     foo: "aaa",
+        //     bar: "bbb"
+        // };
+        // console.log(bar,foo);//bbb aaa
+
+        // eg.2
+        // let {
+        //     foo: baz
+        // } = {
+        //     foo: 'aaa',
+        //     bar: 'bbb'
+        // };
+        // console.log(foo);//Uncaught ReferenceError: foo is not defined
+        // console.log(baz);//aaa
+
+        // eg.3
+        let obj ={
+            p:[
+                'hello',
+                {
+                    y:'World'
+                }
+            ]
+        }
+        let {p:[x,{y}]} = obj;
+        console.log(x);//hello
+        console.log(y);//world
+    </script>
+</body>
+
+</html>

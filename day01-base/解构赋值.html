@@ -10,8 +10,8 @@
 <body>
     <script>
         //  eg1
-        var [a, b, c] = [12, 3, 5];
-        console.log(a, b, c);
+        // var [a, b, c] = [12, 3, 5];
+        // console.log(a, b, c);
 
 
         // eg2
@@ -46,28 +46,32 @@
         // eg5
         // var {time = 12,id=0} = {};
         // console.log(time);
-        function move(obj, json, options) {
-            options = options || {};
-            options.time = options.time || 30;
-        }
+        // function move(obj, json, options) {
+        //     options = options || {};
+        //     options.time = options.time || 30;
+        // }
 
-        function move(obj, json, {
-            time = 300
-        } = {}) {
+        // function move(obj, json, {
+        //     time = 300
+        // } = {}) {
 
-        }
+        // }
 
-        function show() {
-            return {
-                left: 100,
-                stop: 100
-            }
-        }
-        var {
-            left,
-            stop
-        } = show();
-        console.log(left, stop);
+        // function show() {
+        //     return {
+        //         left: 100,
+        //         stop: 100
+        //     }
+        // }
+        // var {
+        //     left,
+        //     stop
+        // } = show();
+        // console.log(left, stop);
+
+        // eg6
+        let [time=12,id=0] =[13];
+        console.log(time,id);
     </script>
 </body>
 
