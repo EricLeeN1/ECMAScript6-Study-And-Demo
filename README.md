@@ -332,3 +332,21 @@
                 return 'c';
             }
         };`
+
+### (12).Class->类的基本语法 -> Class/class.基础.html
+
+    typeof Point1
+    "function"
+    Point1 === Point1.prototype.constructor
+    true
+    类的数据类型就是函数，类本身就指向构造函数。
+    使用的时候，也是直接对类使用new命令，跟构造函数的用法完全一致。
+    构造函数的prototype属性，在 ES6 的“类”上面继续存在。事实上，类的所有方法都定义在类的prototype属性上面。
+    Point1.prototype = {
+        constructor() {},
+        toString() {},
+        toValue() {},
+    };
+    在类的实例上面调用方法，其实就是调用原型上的方法。
+    p1.constructor === Point1.prototype.constructor
+    由于类的方法都定义在prototype对象上面，所以类的新方法可以添加在prototype对象上面。Object.assign方法可以很方便地一次向类添加多个方法。
