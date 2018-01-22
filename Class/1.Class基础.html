@@ -61,6 +61,21 @@
         });
         p1.showX();//1
         p1.showY();//2
+        console.log(Point1.prototype.constructor === Point1); // true
+        console.log(Object.keys(Point1.prototype)); // ["showX", "showY"]
+        console.log(Object.getOwnPropertyNames(Point1.prototype)); //["constructor", "toString", "doStuff", "showX", "showY"]
+
+        let methodName = 'getArea';
+        class Square{
+            constructor(length){
+
+            }
+            [methodName](){
+                console.log('1314');
+            }
+        }
+        let square1 = new Square(1);
+        square1.getArea();//1314
     </script>
 </body>
 
