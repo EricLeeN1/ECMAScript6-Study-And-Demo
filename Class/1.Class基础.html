@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Class 基础</title>
+</head>
+
+<body>
+    <script>
+        console.log('====================================');
+        console.log('es5中生成实例对象的传统方法是通过构造函数');
+        console.log('====================================');
+
+        function Point(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        Point.prototype.toString = function () {
+            return '(' + this.x + ',' + this.y + ')';
+        };
+        let p = new Point(1, 2);
+        console.log(p.toString()); //(1,2)
+
+        console.log('====================================');
+        console.log('Es6里用class类来作为对象的模版');
+        console.log('====================================');
+        class Point1 {
+            constructor(x, y) { //constructor这就是构造方法,而this关键字则代表实例对象，即ES5的构造函数Point，对应ES6的Point类的构造方法constructor
+                this.x = x;
+                this.y = y;
+            }
+            toString() { //Point类除了构造方法，还定义了一个toString方法。定义“类”的方法的时候，前面不需要加上function这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。
+                return '(' + this.x + ',' + this.y + ')';
+            }
+            doStuff() {
+                console.log('stuff');
+            }
+        }
+        // 等同于
+
+        // Point1.prototype = {
+        //     constructor() {},
+        //     toString() {},
+        //     doStuff() {},
+        // };
+
+        let p1 = new Point1(1, 2);
+        console.log(p1.toString()); //(1,2)
+        p1.doStuff(); //stuff
+        console.log(p1.constructor === Point1.prototype.constructor);
+        Object.assign(Point1.prototype,{
+            showX(){
+                console.log(this.x);
+            },
+            showY(){
+                console.log(this.y);
+            },
+        });
+        p1.showX();//1
+        p1.showY();//2
+        console.log(Point1.prototype.constructor === Point1); // true
+        console.log(Object.keys(Point1.prototype)); // ["showX", "showY"]
+        console.log(Object.getOwnPropertyNames(Point1.prototype)); //["constructor", "toString", "doStuff", "showX", "showY"]
+
+        let methodName = 'getArea';
+        class Square{
+            constructor(length){
+
+            }
+            [methodName](){
+                console.log('1314');
+            }
+        }
+        let square1 = new Square(1);
+        square1.getArea();//1314
+    </script>
+</body>
+
+</html>

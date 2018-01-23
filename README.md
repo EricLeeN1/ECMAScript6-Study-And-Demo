@@ -263,6 +263,7 @@
         		}
 			}`
 	3. 应用->面向对象应用-队列类.html 
+	<!-- 学一下哦 -->
 
 ### (9).模块化->浏览器并未实现需要转
 	
@@ -331,3 +332,70 @@
                 return 'c';
             }
         };`
+
+### (12).Class->类的基本语法 
+
+####1. 简洁 -> Class/1.Class基础.html
+
+    typeof Point1
+    "function"
+    Point1 === Point1.prototype.constructor
+    true
+    
+    类的数据类型就是函数，类本身就指向构造函数。
+    
+    使用的时候，也是直接对类使用new命令，跟构造函数的用法完全一致。
+    
+    构造函数的prototype属性，在 ES6 的“类”上面继续存在。事实上，类的所有方法都定义在类的prototype属性上面。
+    
+    Point1.prototype = {
+        constructor() {},
+        toString() {},
+        toValue() {},
+    };
+
+    在类的实例上面调用方法，其实就是调用原型上的方法。
+    
+    p1.constructor === Point1.prototype.constructor
+    
+    由于类的方法都定义在prototype对象上面，所以类的新方法可以添加在prototype对象上面。Object.assign方法可以很方便地一次向类添加多个方法。
+
+    prototype对象的constructor属性，直接指向“类”的本身，这与 ES5 的行为是一致的。
+
+    类的内部所有定义的方法，都是不可枚举的（non-enumerable）。用方法Object.keys()可以遍历；
+
+    采用 ES5 的写法，prototype.toString添加的方法就是可枚举的。
+    
+    类的属性名，可以采用表达式。
+
+####2. 严格模式 -> Class/2.严格模式.html
+
+    类和模块的内部，默认就是严格模式，所以不需要使用use strict指定运行模式。只要你的代码写在类或模块之中，就只有严格模式可用。
+
+    考虑到未来所有的代码，其实都是运行在模块之中，所以 ES6 实际上把整个语言升级到了严格模式。
+
+####3.constructor方法 -> Class/3.Class-constructor.html
+
+    constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。
+    
+    一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加。
+
+    constructor方法默认返回实例对象（即this），完全可以指定返回另外一个对象。
+
+####4.类的实例对象 -> Class/4.类的实例对象.html
+
+    1. 生成类的实例对象的写法，与 ES5 完全一样，也是使用new命令。前面说过，如果忘记加上new，像函数那样调用Class，将会报错。
+    
+    2. 与 ES5 一样，实例的属性除非显式定义在其本身（即定义在this对象上），否则都是定义在原型上（即定义在class上）。
+    
+    3.  x和y都是实例对象point自身的属性（因为定义在this变量上），所以hasOwnProperty方法返回true，而toString是原型对象的属性（因为定义在Point类上），所以hasOwnProperty方法返回false。这些都与 ES5 的行为保持一致。
+    
+    4.  p1和p2都是Point的实例，它们的原型都是Point.prototype，所以__proto__属性是相等的。
+
+    5. 这也意味着，可以通过实例的__proto__属性为“类”添加方法。
+    
+    6. __proto__ 并不是语言本身的特性，这是各大厂商具体实现时添加的私有属性，虽然目前很多现代浏览器的 JS 引擎中都提供了这个私有属性，但依旧不建议在生产中使用该属性，避免对环境产生依赖。生产环境中，我们可以使用 Object.getPrototypeOf 方法来获取实例对象的原型，然后再来为原型添加方法/属性。
+
+    7. 与 ES5 一样，类的所有实例共享一个原型对象。
+
+    8. 代码在p1的原型上添加了一个printName方法，由于p1的原型就是p2的原型，因此p2也可以调用这个方法。而且，此后新建的实例p3也可以调用这个方法。这意味着，使用实例的__proto__属性改写原型，必须相当谨慎，不推荐使用，因为这会改变“类”的原始定义，影响到所有实例。
