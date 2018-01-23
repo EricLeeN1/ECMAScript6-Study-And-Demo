@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>6.不存在变量提升</title>
 </head>
+
 <body>
-    
+    <h3>类不存在变量提升（hoist），这一点与 ES5 完全不同。</h3>
+    <script>
+        // new Foo();//Uncaught ReferenceError: Foo is not defined
+        // class Foo {};
+
+        console.log('Foo类使用在前，定义在后，这样会报错，因为 ES6 不会把类的声明提升到代码头部。这种规定的原因与下文要提到的继承有关，必须保证子类在父类之后定义。');
+
+        {
+            let Foo = class {};
+            class Bar extends Foo {
+
+            }
+        } // 不会报错
+    </script>
 </body>
+
 </html>

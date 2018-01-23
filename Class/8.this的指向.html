@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>8.this的指向</title>
+</head>
+
+<body>
+    <h3>类的方法内部如果含有this，它默认指向类的实例</h3>
+    <script>
+        // class Logger {
+        //     printName(name = 'there') {
+        //         this.print(`Hello ${name}`);
+        //     }
+        //     print(text) {
+        //         console.log(text);
+        //     }
+        // }
+
+        // const logger = new Logger();
+        // const {
+        //     printName
+        // } = logger;
+        // printName();//Uncaught TypeError: Cannot read property 'print' of undefined
+    </script>
+    <h4>printName方法中的this，默认指向Logger类的实例。但是，如果将这个方法提取出来单独使用，this会指向该方法运行时所在的环境，因为找不到print方法而导致报错。</h4>
+    <h3>1.一个比较简单的解决方法是，在构造方法中绑定this，这样就不会找不到print方法了。</h3>
+    <script>
+        // class Logger {
+        //     constructor() {
+        //         this.printName = this.printName.bind(this);
+        //     }
+        //     printName(name = 'there') {
+        //         this.print(`Hello ${name}`);
+        //     }
+        //     print(text) {
+        //         console.log(text);
+        //     }
+        // }
+
+        // const logger = new Logger();
+        // const {
+        //     printName
+        // } = logger;
+        // printName();//Hello there
+    </script>
+
+    <h3>2.另一种解决方法是使用箭头函数。</h3>
+    <script>
+        // class Logger {
+        //     constructor() {
+        //         this.printName = (name = 'there') => {
+        //             this.print(`Hello ${name}`);
+        //         };
+        //     }
+        //     printName(name = 'there') {
+        //         this.print(`Hello ${name}`);
+        //     }
+        //     print(text) {
+        //         console.log(text);
+        //     }
+        // }
+        // const logger = new Logger();
+        // const {
+        //     printName
+        // } = logger;
+        // printName(); //Hello there
+    </script>
+    <h3>3.还有一种解决方法是使用Proxy，获取方法的时候，自动绑定this。</h3>
+    <script>
+        function selfish(target) {
+            const cache = new WeakMap();
+            const handler = {
+                get(target, key) {
+                    const value = Reflect.get(target, key);
+                    if (typeof value !== 'function') {
+                        return value;
+                    }
+                    if (!cache.has(value)) {
+                        cache.set(value, value.bind(target));
+                    }
+                    return cache.get(value);
+                }
+            };
+            const proxy = new Proxy(target, handler);
+            return proxy;
+        }
+
+        const logger = selfish(new Logger());
+    </script>
+</body>
+
+</html>
