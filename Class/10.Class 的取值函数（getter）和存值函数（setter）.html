@@ -9,9 +9,49 @@
 </head>
 
 <body>
+    <h3>与 ES5 一样，在“类”的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。</h3>
     <script>
-        console.log('111');
+        class Myclass {
+            constructor() {
+
+            }
+            get prop() {
+                return 'getter';
+            }
+
+            set prop(value) {
+                console.log('Setter:' + value);
+            }
+
+        }
+        let inst = new Myclass();
+
+        // inst.prop = 123; Setter:123
+        // inst.prop // getter
     </script>
+    <h3>prop属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。</h3>
+    <h3>存值函数和取值函数是设置在属性的 Descriptor 对象上的。</h3>
+    <script>
+        class CustomHTMLElement {
+            constructor (element) {
+                this.element = element;
+            }
+            get html () {
+                return this.element.innerHTML;
+            }
+            set html (value) {
+                this.element.innerHTML = value;
+            }
+        }
+        var descriptor = Object.getOwnPropertyDescriptor(
+            CustomHTMLElement.prototype,"html"
+        );
+        console.log("get" in descriptor);//true
+        console.log("set" in descriptor);//true
+        
+    </script>
+
+    <h3>存值函数和取值函数是定义在html属性的描述对象上面，这与 ES5 完全一致。</h3>
 </body>
 
 </html>
