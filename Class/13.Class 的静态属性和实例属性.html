@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.Class 的静态属性和实例属性</title>
+</head>
+
+<body>
+    <h3>静态属性指的是 Class 本身的属性，即Class.propName，而不是定义在实例对象（this）上的属性。</h3>
+
+    <script>
+        class Foo {}
+        Foo.prop = 1;
+        // Foo.prop
+        console.log(Foo.prop); // 1
+    </script>
+    <h3>上面的写法为Foo类定义了一个静态属性prop。</h3>
+    <script>
+        // 以下两种写法都无效
+        // class Foo {
+        //     // 写法一
+        //     prop: 2
+
+        //     // 写法二
+        //     static prop: 2
+        // }
+
+        // Foo.prop // undefined
+
+    </script>
+
+    
+</body>
+
+</html>
