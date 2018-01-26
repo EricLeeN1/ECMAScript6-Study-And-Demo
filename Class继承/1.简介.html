@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.简介</title>
+</head>
+
+<body>
+    <h3>Class 可以通过extends关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</h3>
+    <script>
+        class Point {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.sayMaps = function () {
+                    return x * y
+                }
+            }
+            sayMaps() {
+                return this.x * this.y * 2
+            }
+        }
+        class colorPoint extends Point {
+            constructor(x, y, color) {
+                super(x, y); // 调用父类的constructor(x, y)
+                this.color = color;
+            }
+            toString() {
+                return this.color + ' ' + super.sayMaps(); // 调用父类原型的sayMaps()方法
+            }
+        }
+        let p1 = new Point(3, 2);
+        console.log(p1.sayMaps()); //6 原型方法与构造器方法重名时候用构造器方法;
+        let p2 = new colorPoint(5, 6, 'red');
+        console.log(p2.toString()); // red 60 此时调用的是父类原型上面的方法
+    </script>
+    <h3>constructor方法和toString方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。</h3>
+</body>
+
+</html>
