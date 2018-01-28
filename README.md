@@ -368,7 +368,7 @@
     
     类的属性名，可以采用表达式。
 
-    在constructor函数里面的属性与方法就是类的构造器方法,外面的方法都是prototype上的方法;如果构造器方法与原型方法重名，使用构造器方法；
+    在constructor函数里面的属性与方法就是类的实例上的属性与方法,外面的方法都是prototype上的方法;如果构造器方法与原型方法重名，使用实力上的方法；
 
 ####2. 严格模式 -> Class/2.严格模式.html
 
@@ -499,8 +499,48 @@
 
     第一段代码中，该类通过extends关键字，继承了Point类的所有属性和方法。
     constructor方法和toString方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。
+
+    构造器里面的super(x,y)是调用父类的constructor(x, y)；原型方法里面的super.sayMaps();// 调用父类原型上的sayMaps()
     
     子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
-    构造器里面的super(x,y)是调用父类的constructor(x, y)；原型方法里面的super.sayMaps();// 调用父类原型上的sayMaps()
 
-	下午回来继续写
+    ES5 的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面（Parent.apply(this)）。ES6 的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。
+
+    如果子类没有定义constructor方法，这个方法会被默认添加，代码如下。也就是说，不管有没有显式定义，任何一个子类都有constructor方法。	下午回来继续写
+
+    另一个需要注意的地方是，在子类的构造函数中，只有调用super之后，才可以使用this关键字，否则会报错。这是因为子类实例的构建，是基于对父类实例加工，只有super方法才能返回父类实例。
+
+    子类的constructor方法没有调用super之前，就使用this关键字，结果报错，而放在super方法之后就是正确的。
+
+    父类的静态方法，也会被子类继承
+    hello()是A类的静态方法，B继承A，也继承了A的静态方法。
+
+####2.Object.getPrototypeOf()  -> Class继承/1.简介.html
+
+    Object.getPrototypeOf()方法可以用来从子类上获取父类
+
+    方法Object.getPrototypeOf(ColorPoint) === Point
+
+####3.super关键字 -> Class继承/2.super关键字.html
+
+    super这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。
+    1. 第一种情况，super作为函数调用时，代表父类的构造函数。ES6 要求，子类的构造函数必须执行一次super函数。
+        1. 子类B的构造函数之中的super()，代表调用父类的构造函数。这是必须的，否则 JavaScript 引擎会报错。
+        2. 注意，super虽然代表了父类A的构造函数，但是返回的是子类B的实例，即super内部的this指的是B，因此super()在这里相当于A.prototype.constructor.call(this)。
+        3. new.target指向当前正在执行的函数。可以看到，在super()执行时，它指向的是子类B的构造函数，而不是父类A的构造函数。也就是说，super()内部的this指向的是B。作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错。
+    2. .
+        1. 子类B当中的super.p()，就是将super当作一个对象使用。这时，super在普通方法之中，指向A.prototype，所以super.p()就相当于A.prototype.p()。
+        2. 这里需要注意，由于super指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过super调用的。因此实例上的方法或属性是不能通过super访问的，要访问的话或许可以用this；
+        3. p是父类A实例的属性，super.p就引用不到它。
+        4. 属性定义在父类的原型对象上，super就可以取到。
+        5. 属性x是定义在A.prototype上面的，所以super.x可以取到它的值。
+        6. ES6 规定，通过super调用父类的方法时，方法内部的this指向子类。
+        7. super.print()虽然调用的是A.prototype.print()，但是A.prototype.print()内部的this指向子类B，导致输出的是2，而不是1。也就是说，实际上执行的是super.print.call(this)。
+        8. 由于this指向子类，所以如果通过super对某个属性赋值，这时super就是this，赋值的属性会变成子类实例的属性。
+        9. super.x赋值为3，这时等同于对this.x赋值为3。而当读取super.x的时候，读的是A.prototype.x，所以返回undefined。
+        10. 如果super作为对象，用在静态方法之中，这时super将指向父类，而不是父类的原型对象。
+        11. super在静态方法之中指向父类，在普通方法之中指向父类的原型对象。
+        12. 使用super的时候，必须显式指定是作为函数、还是作为对象使用，否则会报错。
+        13. console.log(super)当中的super，无法看出是作为函数使用，还是作为对象使用，所以 JavaScript 引擎解析代码的时候就会报错。这时，如果能清晰地表明super的数据类型，就不会报错。
+        14. super.valueOf()表明super是一个对象，因此就不会报错。同时，由于super使得this指向B，所以super.valueOf()返回的是一个B的实例。
+        15. 由于对象总是继承其他对象的，所以可以在任意一个对象中，使用super关键字
