@@ -552,3 +552,18 @@
     1. 子类的__proto__属性，表示构造函数的继承，总是指向父类。
     2. 子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性。
     3. 这样的结果是因为，类的继承是按照下面的模式实现的。
+
+####5. extends 的继承目标 -> Class继承/5.extends 的继承目标.html
+
+    上面代码的A，只要是一个有prototype属性的函数，就能被B继承。由于函数都有prototype属性（除了Function.prototype函数），因此A可以是任意函数。
+
+    三种特殊情况
+    1. 子类继承Object类。
+    这种情况下，C其实就是构造函数Object的复制，C的实例就是Object的实例。
+    2. 不存在任何继承。
+    这种情况下，A作为一个基类（即不存在任何继承），就是一个普通函数，所以直接继承Function.prototype。但是，A调用后返回一个空对象（即Object实例），所以A.prototype.__proto__指向构造函数（Object）的prototype属性。
+    3. 子类继承null
+    A也是一个普通函数，所以直接继承Function.prototype。但是，A调用后返回的对象不继承任何方法，所以它的__proto__指向Function.prototype，即实质上执行了下面的代码。
+
+####6. 实例的 __proto__ 属性 -> Class继承/6.实例的 __proto__ 属性.html
+    

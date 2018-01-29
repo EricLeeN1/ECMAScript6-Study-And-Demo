@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.extends 的继承目标</title>
+</head>
+
+<body>
+    <h3>extends关键字后面可以跟多种类型的值。</h3>
+    <script>
+        class A {
+
+        }
+        class B extends A {
+
+        }
+    </script>
+    <h3>三种特殊情况</h3>
+    <h4>1.子类继承Object类。</h4>
+    <script>
+        class C extends Object {
+
+        }
+        console.log(C.__proto__ === Object); // true
+        console.log(C.prototype.__proto__ === Object.prototype); // true
+    </script>
+    <h5>C其实就是构造函数Object的复制，A的实例就是Object的实例</h5>
+    <h4>2.不存在任何继承</h4>
+    <script>
+        class D {
+
+        }
+        console.log(D.__proto__ === Function.prototype); //true
+        console.log(D.prototype.__proto__ === Object.prototype); //true
+    </script>
+    <h5>这种情况下，A作为一个基类（即不存在任何继承），就是一个普通函数，所以直接继承Function.prototype。但是，A调用后返回一个空对象（即Object实例），所以A.prototype.__proto__指向构造函数（Object）的prototype属性。</h5>
+    <h4>3.子类继承null</h4>
+    <script>
+        class E extends null {}
+
+        console.log(E.__proto__ === Function.prototype) // true
+        console.log(E.prototype.__proto__ === undefined) // true
+    </script>
+    <h5>A也是一个普通函数，所以直接继承Function.prototype。但是，A调用后返回的对象不继承任何方法，所以它的__proto__指向Function.prototype，即实质上执行了下面的代码。</h5>
+    <script>
+    class F extends null {
+        constructor () {
+            return object.create(null);
+        }
+    }
+    </script>
+</body>
+
+</html>
