@@ -544,3 +544,10 @@
         13. console.log(super)当中的super，无法看出是作为函数使用，还是作为对象使用，所以 JavaScript 引擎解析代码的时候就会报错。这时，如果能清晰地表明super的数据类型，就不会报错。
         14. super.valueOf()表明super是一个对象，因此就不会报错。同时，由于super使得this指向B，所以super.valueOf()返回的是一个B的实例。
         15. 由于对象总是继承其他对象的，所以可以在任意一个对象中，使用super关键字
+
+####4.类的 prototype 属性和__proto__属性 -> Class继承/4.类的 prototype 属性和__proto__属性.html
+
+    大多数浏览器的 ES5 实现之中，每一个对象都有__proto__属性，指向对应的构造函数的prototype属性。Class 作为构造函数的语法糖，同时有prototype属性和__proto__属性，因此同时存在两条继承链。
+
+    1. 子类的__proto__属性，表示构造函数的继承，总是指向父类。
+    2. 子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性。
