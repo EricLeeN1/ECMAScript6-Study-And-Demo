@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.原生构造函数的继承</title>
+</head>
+
+<body>
+    <h3>原生构造函数的继承</h3>
+    <script>
+        class MyArray extends Array {
+            constructor(...args) {
+                super(...args);
+            }
+        }
+        let arr = new MyArray();
+        arr[0] = 12;
+        console.log(arr.length); //1
+        arr.length = 0;
+        console.log(arr[0]); //undefined
+    </script>
+    <h3>
+        定义了一个带版本功能的数组。
+    </h3>
+    <script>
+        class VersionedArray extends Array {
+            constructor() {
+                super();
+                this.history = [
+                    []
+                ];
+            }
+            commit() {
+                this.history.push(this.slice());
+            }
+            revert() {
+                this.splice(0, this.length, ...this.history[this.history.length - 1]);
+            }
+        }
+
+        var x = new VersionedArray();
+
+        x.push(1);
+        x.push(2);
+        x // [1, 2]
+        x.history // [[]]
+
+        x.commit();
+        x.history // [[], [1, 2]]
+
+        x.push(3);
+        x // [1, 2, 3]
+        x.history // [[], [1, 2]]
+
+        x.revert();
+        x // [1, 2]
+    </script>
+    <h3>上面代码中，VersionedArray会通过commit方法，将自己的当前状态生成一个版本快照，存入history属性。revert方法用来将数组重置为最新一次保存的版本。除此之外，VersionedArray依然是一个普通数组，所有原生的数组方法都可以在它上面调用。</h3>
+    <h3>下面是一个自定义Error子类的例子，可以用来定制报错时的行为。</h3>
+    <script>
+        class ExtendableError extends Error {
+            constructor(message) {
+                super();
+                this.message = message;
+                this.stack = (new Error()).stack;
+                this.name = this.constructor.name;
+            }
+        }
+
+        class MyError extends ExtendableError {
+            constructor(m) {
+                super(m);
+            }
+        }
+
+        var myerror = new MyError('ll');
+        myerror.message // "ll"
+        myerror instanceof Error // true
+        myerror.name // "MyError"
+        myerror.stack
+        // Error
+        //     at MyError.ExtendableError
+        //     ...
+    </script>
+    <h3>继承Object的子类，有一个行为差异。</h3>
+    <script>
+        class NewObj extends Object {
+            constructor() {
+                super(...arguments);
+            }
+        }
+        var o = new NewObj({
+            attr: true
+        });
+        o.attr === true // false
+    </script>
+    <h3>NewObj继承了Object，但是无法通过super方法向父类Object传参。这是因为 ES6 改变了Object构造函数的行为，一旦发现Object方法不是通过new Object()这种形式调用，ES6 规定Object构造函数会忽略参数。</h3>
+</body>
+
+</html>
