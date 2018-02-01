@@ -316,6 +316,7 @@
 		export default {a,b,kuoda};`=>多个模块 
 	2. 引入时候`type=module`
 		1. `import modA from './a.js';`
+		2018/2/1 17:57:59 
 
 ### (10).Promise->承诺?
 	
