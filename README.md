@@ -404,6 +404,40 @@
     上面代码的最后一行的意思是，暴露出forEach接口，默认指向each接口，即forEach和each指向同一个方法。
     export default也可以用来输出类。见myClass.js
 
+####6.export 与 import的复合写法
+
+    如果在一个模块之中，先输入后输出同一个模块，import语句可以与export语句写在一起。参考exportAndImport.js
+
+    上面代码中，export和import语句可以结合在一起，写成一行。但需要注意的是，写成一行以后，foo和bar实际上并没有被导入当前模块，只是相当于对外转发了这两个接口，导致当前模块不能直接使用foo和bar。
+
+    模块的接口改名和整体输出，也可以采用这种写法。
+    `// 接口改名
+    export { foo as myFoo } from 'my_module';
+
+    // 整体输出
+    export * from 'my_module';`
+    默认接口的写法如下。
+    `export { default } from 'foo';`
+    具名接口改为默认接口的写法如下。
+    `export { es6 as default } from './someModule';`
+    `// 等同于
+    import { es6 } from './someModule';
+    export default es6;`
+    同样地，默认接口也可以改名为具名接口。
+    `export { default as es6 } from './someModule';`
+
+    下面三种import语句，没有对应的复合写法。
+
+    `import * as someIdentifier from "someModule";
+    import someIdentifier from "someModule";
+    import someIdentifier, { namedIdentifier } from "someModule";`
+    提案见以后
+
+####7.模块的继承
+
+    模块之间也可以继承
+
+    
 	1. 定义导出模块
 		`const a = 12;
 		export default a;`
