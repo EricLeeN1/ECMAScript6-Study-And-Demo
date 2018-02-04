@@ -2,3 +2,9 @@
 bootstrap.js
 BrowserSystem.js
 traceur.js
+bower.json
+gulpfile.babel.js
+package.json
+.babelrc
+node_modules/
+bower_components/
