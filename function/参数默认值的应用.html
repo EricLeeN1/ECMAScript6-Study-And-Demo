@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>参数默认值的应用</title>
+</head>
+
+<body>
+    <h3>参数默认值的应用</h3>
+    <script>
+        function throwIfMissing() {
+            throw new Error('Missing parameter');
+        }
+
+        function foo(mustBeProvided = throwIfMissing()) {
+            return mustBeProvided;
+        }
+        foo();//Uncaught Error: Missing parameter
+    </script>
+</body>
+
+</html>
