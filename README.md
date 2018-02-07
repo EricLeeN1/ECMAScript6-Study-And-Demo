@@ -1,6 +1,6 @@
 # ECMAScript 6
 	
-	时间：2017/7/3 22:38:44 
+	时间：2018-2-7 09:31:46
 
 ### 资料参考自[http://es6.ruanyifeng.com/](http://es6.ruanyifeng.com/ "阮一峰大大の书-ECMAScript 6 入门")及部分网络课程
 
