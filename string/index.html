@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模版编译</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <div id="safe"></div>
+    <script src="./compile.js"></script>
+    <script src="./safehtml.js"></script>
+    <script>
+        let template = `
+        <ul>
+            <% for (let i = 0; i < data.supplies.length; i++) { %>
+                <li><%= data.supplies[i] %></li>
+            <% } %>
+        </ul>
+        `;
+        let parse = eval(compile(template));
+        let app = document.querySelector('#app');
+        let safe = document.querySelector('#safe');
+        app.innerHTML = parse({ supplies: ["张三", "李四", "王五"] });
+        console.log(message);
+        safe.innerHTML = message;
+    </script>
+</body>
+
+</html>
