@@ -299,6 +299,11 @@
             	return this.age
         	}
     	}`
+		1. 和es5一样，在类的内部可以使用set和get关键字，对某个属性设置存储函数和取值函数，拦截该属性的存取行为。
+		在Class/setAndget.js代码中，x属性有对应的存值函数和取值函数，因此赋值和读取行为都被自定义了。
+		2. 存值函数和取值函数是设置在属性的 Descriptor 对象上的。
+		3. 如果静态方法包含this关键字，这个this指的是类，而不是实例。父类的静态方法，可以被子类继承，静态方法可以与非静态方法重名。
+		4. Object.getPrototypeOf(ColorPoint) === Point // Object.getPrototypeOf()可以用来从子类上获取父类
 	2. 继承
 		1. 之前:子类.prototype=new 父类();
 		2. es6:
